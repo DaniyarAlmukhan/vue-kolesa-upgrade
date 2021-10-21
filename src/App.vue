@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ canScroll: !isOpen }">
+  <div id="app">
     <div class="wrapper dl-flex">
       <div class="wrapper__container container">
         <header class="header dl-flex">
@@ -305,6 +305,7 @@ export default {
       filterAccessories: false,
       products: "",
       isOpen: false,
+      isClosed: true,
       clothing: [
         {
           id: 0,
@@ -465,4 +466,5 @@ export default {
 
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
 </style>
