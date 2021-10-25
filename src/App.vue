@@ -79,8 +79,8 @@
               <label
                 for="all-products"
                 class="body__filter-label filter-label"
-                :class="{ filterLabelSelected: filterAll }"
-                @click="filter('')"
+                :class="{ filterLabelSelected: category === 'allProducts' }"
+                @click="filter('allProducts')"
                 >Все товары</label
               >
               <input
@@ -93,7 +93,7 @@
               <label
                 for="clothing"
                 class="body__filter-label filter-label"
-                :class="{ filterLabelSelected: filterClothing }"
+                :class="{ filterLabelSelected: category === 'clothing' }"
                 @click="filter('clothing')"
               >
                 Одежда</label
@@ -108,7 +108,7 @@
               <label
                 for="accessories"
                 class="body__filter-label filter-label"
-                :class="{ filterLabelSelected: filterAccessories }"
+                :class="{ filterLabelSelected: category === 'accessories' }"
                 @click="filter('accessories')"
               >
                 Аксессуары</label
@@ -118,7 +118,7 @@
               <div
                 class="grid-item"
                 :id="product.id"
-                v-for="product in products"
+                v-for="product in sortedProducts"
                 :key="product.id"
               >
                 <div class="grid-item__imgs">
@@ -300,12 +300,8 @@ export default {
   name: "App",
   data() {
     return {
-      filterAll: true,
-      filterClothing: false,
-      filterAccessories: false,
-      products: "",
+      category: "allProducts",
       isOpen: false,
-      isClosed: true,
       clothing: [
         {
           id: 0,
@@ -424,23 +420,15 @@ export default {
       ],
     };
   },
+
   methods: {
     filter(category) {
       if (category === "clothing") {
-        this.products = this.clothing;
-        this.filterAll = false;
-        this.filterAccessories = false;
-        this.filterClothing = true;
+        this.category = "clothing";
       } else if (category === "accessories") {
-        this.products = this.accessories;
-        this.filterAll = false;
-        this.filterClothing = false;
-        this.filterAccessories = true;
+        this.category = "accessories";
       } else {
-        this.products = this.allProducts;
-        this.filterAccessories = false;
-        this.filterClothing = false;
-        this.filterAll = true;
+        this.category = "allProducts";
       }
     },
 
@@ -448,23 +436,29 @@ export default {
       this.isOpen = true;
     },
     closeModal(e) {
-      if (e.target.className === "modal__wrapper" || e.target.className === "close") {
+      if (e.target.className === ("modal__wrapper" || "close")) {
         this.isOpen = false;
       }
     },
   },
+  computed: {
+    sortedProducts: function () {
+      let products = [];
 
-  beforeMount() {
-    this.allProducts = this.clothing.concat(this.accessories);
-    this.allProducts.sort((x, y) => (x.isNew < y.isNew ? 1 : -1));
-    this.products = this.allProducts;
-    this.clothing.sort((x, y) => (x.isNew < y.isNew ? 1 : -1));
-    this.accessories.sort((x, y) => (x.isNew < y.isNew ? 1 : -1));
+      if (this.category === "clothing") {
+        products = this.clothing;
+      } else if (this.category === "accessories") {
+        products = this.accessories;
+      } else {
+        products = [...this.clothing, ...this.accessories];
+      }
+      products.sort((x, y) => (x.isNew < y.isNew ? 1 : -1));
+      return products;
+    },
   },
 };
 </script>
 
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
 </style>
