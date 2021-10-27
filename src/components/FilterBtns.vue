@@ -58,13 +58,7 @@ export default {
   },
   methods: {
     filter(category) {
-      if (category === "clothing") {
-        this.category = "clothing";
-      } else if (category === "accessories") {
-        this.category = "accessories";
-      } else {
-        this.category = "allProducts";
-      }
+      this.category = category;
       this.$emit('sort', category);
     },
   },

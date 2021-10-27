@@ -24,10 +24,10 @@
       </div>
       <FooterCustom></FooterCustom>
       <Modal
-        :cardData="cardData"
-        :isOpen="isOpen"
+        :card-data="cardData"
+        :is-open="isOpen"
         :balance="user.score"
-        @closeModal="closeModal"
+        @close-modal="closeModal"
         @order="order"
       ></Modal>
     </div>
@@ -122,10 +122,10 @@ export default {
   mounted() {
     axios.get("templates/-_RLsEGjof6i/data").then((response) => {
       this.clothing = response.data;
-    });
+    }).catch(err=>console.log(err));
     axios.get("templates/q3OPxRyEcPvP/data").then((response) => {
       this.accessories = response.data;
-    });
+    }).catch(err=>console.log(err));
   },
 };
 </script>

@@ -122,7 +122,7 @@ export default {
         e.target.className === "modal__wrapper" ||
         e.target.className === "close"
       ) {
-        this.$emit("closeModal");
+        this.$emit("close-modal");
       }
     },
     order() {
