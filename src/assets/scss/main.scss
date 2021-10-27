@@ -15,6 +15,8 @@
 @import "./blocks/btn.scss";
 @import "./blocks/imgs.scss";
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -85,16 +87,13 @@ a {
         height: 100vh;
         width: 100vw;
         background: $background-gray;
-        // position: absolute;
-        // left: 0;
-        // top: 0;
+    
     }
 
     &__container {
         position: relative;
         background: $white;
         margin: 0 auto;
-        // width: 1039px;
         display: flex;
         border-radius: 16px;
         padding: 56px;
@@ -108,6 +107,10 @@ a {
         position: absolute;
         right: 76px;
         top: 112px;
+    }
+
+    .details__text{
+        max-width: 450px;
     }
 
     .product-filter-btn {
@@ -137,16 +140,8 @@ a {
         }
     }
 
-    .filter-label[for^="color__blue"]::before {
-        background: $blue-darkerst;
-    }
-
-    .filter-label[for^="color__beige"]::before {
-        background: $milk;
-    }
-
-    .filter-label[for^="color__gray"]::before {
-        background: $gray-lightest;
+    .filter-label::before {
+        background: var(--label-color);
     }
 }
 
