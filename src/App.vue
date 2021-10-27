@@ -65,7 +65,7 @@ export default {
       category: "allProducts",
       user: {
         name: "",
-        score: "",
+        score: 0,
         avatarUrl: "",
       },
       clothing: [],

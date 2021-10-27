@@ -47,7 +47,6 @@ export default {
   methods: {
     openCard(product) {
       this.$emit("passProduct", product);
-      console.log(product);
     },
   },
 };
