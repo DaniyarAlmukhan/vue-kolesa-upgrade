@@ -6,33 +6,31 @@
           <div class="header__kolesa-logo">
             <img src="@/assets/Vector.svg" alt="Kolesa Logo" />
           </div>
-          <Search @search="search"></Search>
-          <User :user="user" @updateUser="updateUser"></User>
+          <Search @search="search" />
+          <User :user="user" @updateUser="updateUser" />
         </header>
         <div class="body dl-flex">
           <Navbar></Navbar>
           <div class="body__content">
             <img src="@/assets/Баннер.jpg" alt="Banner" />
-            <BigBtns></BigBtns>
-            <FilterBtns @sort="getCategory"></FilterBtns>
-            <ItemCard
-              :products="sortedProducts"
-              @passProduct="openCard"
-            ></ItemCard>
+            <BigBtns />
+            <FilterBtns @sort="getCategory" />
+            <ItemCard :products="sortedProducts" @passProduct="openCard" />
           </div>
         </div>
       </div>
-      <FooterCustom></FooterCustom>
+      <FooterCustom />
       <Modal
         :card-data="cardData"
         :is-open="isOpen"
         :balance="user.score"
         @close-modal="closeModal"
         @order="order"
-      ></Modal>
+      />
     </div>
   </div>
 </template>
+
 <script>
 import Modal from "@/components/Modal.vue";
 import Search from "@/components/Search.vue";
@@ -120,12 +118,18 @@ export default {
     },
   },
   mounted() {
-    axios.get("templates/-_RLsEGjof6i/data").then((response) => {
-      this.clothing = response.data;
-    }).catch(err=>console.log(err));
-    axios.get("templates/q3OPxRyEcPvP/data").then((response) => {
-      this.accessories = response.data;
-    }).catch(err=>console.log(err));
+    axios
+      .get("templates/-_RLsEGjof6i/data")
+      .then((response) => {
+        this.clothing = response.data;
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("templates/q3OPxRyEcPvP/data")
+      .then((response) => {
+        this.accessories = response.data;
+      })
+      .catch((err) => console.log(err));
   },
 };
 </script>

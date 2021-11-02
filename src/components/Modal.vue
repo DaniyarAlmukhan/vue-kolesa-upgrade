@@ -40,52 +40,67 @@
           </div>
 
           <div class="color mb-24" v-if="cardData.colors">
-            <div class="color__title mb-24" v-if="cardData.colors.length > 0" >Цвета:</div>
+            <div class="color__title mb-24" v-if="cardData.colors.length > 0">
+              Цвета:
+            </div>
             <div class="color__picker">
               <div v-for="(color, index) in cardData.colors" :key="color">
                 <input
                   type="radio"
                   name="color-pick"
-                  :id='"color"+index'
-                  :value='"color"+index'
+                  :id="'color' + index"
+                  :value="'color' + index"
                   class="product-filter-btn"
                   :checked="index === 0"
                 />
-                <label :for='"color"+index' class="filter-label" :style="{'--label-color': color.color}">{{color.label}}</label>
+                <label
+                  :for="'color' + index"
+                  class="filter-label"
+                  :style="{ '--label-color': color.color }"
+                  >{{ color.label }}</label
+                >
               </div>
             </div>
           </div>
 
           <div class="size mb-24" v-if="cardData.volumes">
-            <div class="size__title mb-8" v-if="cardData.volumes.length > 0">Объем:</div>
+            <div class="size__title mb-8" v-if="cardData.volumes.length > 0">
+              Объем:
+            </div>
             <div class="size__picker">
-              <div v-for="(volume, index) in cardData.volumes" :key="volume">
+              <div v-f  or="(volume, index) in cardData.volumes" :key="volume">
                 <input
                   type="radio"
                   name="size-pick"
-                  :id='"volume"+index'
-                  :value='"volume"+index'
+                  :id="'volume' + index"
+                  :value="'volume' + index"
                   class="product-filter-btn"
                   :checked="index === 0"
                 />
-                <label :for='"volume"+index' class="filter-label"> {{ volume }}</label>
+                <label :for="'volume' + index" class="filter-label">
+                  {{ volume }}</label
+                >
               </div>
             </div>
           </div>
 
           <div class="size mb-24" v-if="cardData.sizes">
-            <div class="size__title mb-8" v-if="cardData.sizes.length > 0">Размер:</div>
+            <div class="size__title mb-8" v-if="cardData.sizes.length > 0">
+              Размер:
+            </div>
             <div class="size__picker">
               <div v-for="(size, index) in cardData.sizes" :key="size">
                 <input
                   type="radio"
                   name="size-pick"
-                  :id='"size"+index'
-                  :value='"size"+index'
+                  :id="'size' + index"
+                  :value="'size' + index"
                   class="product-filter-btn"
                   :checked="index === 0"
                 />
-                <label :for='"size"+index' class="filter-label"> {{ size }}</label>
+                <label :for="'size' + index" class="filter-label">
+                  {{ size }}</label
+                >
               </div>
             </div>
           </div>
