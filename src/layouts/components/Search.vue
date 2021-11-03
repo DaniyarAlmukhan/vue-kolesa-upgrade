@@ -20,17 +20,16 @@
 
 <script>
 export default {
-  name: 'Search',
-  data(){
-    return{
-      input: '',
-    }
+  name: "Search",
+  data() {
+    return {
+      input: "",
+    };
   },
-  methods:{
-    search(){
-      this.$emit('search', this.input)
-    }
-  }
-  
-}
+  methods: {
+    search() {
+      this.$emit("search", this.input);
+    },
+  },
+};
 </script>

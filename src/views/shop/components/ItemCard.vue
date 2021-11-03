@@ -7,7 +7,11 @@
       :key="product.id"
     >
       <div class="grid-item__imgs">
-        <img :src="product.mainImage" alt="Item Picture" class="grid-item__pic" />
+        <img
+          :src="product.mainImage"
+          alt="Item Picture"
+          class="grid-item__pic"
+        />
         <img
           src="@/assets/Label.svg"
           alt=""
@@ -39,7 +43,7 @@
 
 <script>
 export default {
-  name: 'ItemCard',
+  name: "ItemCard",
   props: {
     products: Array,
   },

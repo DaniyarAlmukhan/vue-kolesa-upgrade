@@ -11,7 +11,7 @@
           <div class="imgs__preview-pics" v-if="cardData.images">
             <img
               v-for="(image, index) in cardData.images"
-              :key="image"
+              :key="index"
               :src="image"
               alt="Preview Image"
               class="imgs__preview-pic"
@@ -44,7 +44,7 @@
               Цвета:
             </div>
             <div class="color__picker">
-              <div v-for="(color, index) in cardData.colors" :key="color">
+              <div v-for="(color, index) in cardData.colors" :key="index">
                 <input
                   type="radio"
                   name="color-pick"
@@ -68,7 +68,7 @@
               Объем:
             </div>
             <div class="size__picker">
-              <div v-f  or="(volume, index) in cardData.volumes" :key="volume">
+              <div v-for="(volume, index) in cardData.volumes" :key="index">
                 <input
                   type="radio"
                   name="size-pick"
@@ -89,7 +89,7 @@
               Размер:
             </div>
             <div class="size__picker">
-              <div v-for="(size, index) in cardData.sizes" :key="size">
+              <div v-for="(size, index) in cardData.sizes" :key="index">
                 <input
                   type="radio"
                   name="size-pick"
