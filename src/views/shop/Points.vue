@@ -146,7 +146,7 @@ export default {
     margin-bottom: 24px;
   }
 
-  &__title{
+  &__title {
     font-weight: 600;
     font-size: 20px;
   }

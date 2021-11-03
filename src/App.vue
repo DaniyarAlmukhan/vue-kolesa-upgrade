@@ -7,12 +7,12 @@
             <img src="@/assets/Vector.svg" alt="Kolesa Logo" />
           </div>
           <Search @search="search" />
-          <User :user="user" @updateUser="updateUser" />
+          <User/>
         </header>
         <div class="body dl-flex">
           <Navbar></Navbar>
           <div class="body__content">
-            <router-view :user="user" :input="input"></router-view>
+            <router-view :input="input"></router-view>
           </div>
         </div>
       </div>
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-
 import Search from "@/layouts/components/Search.vue";
 import User from "@/layouts/components/User.vue";
 import Navbar from "@/layouts/components/Navbar.vue";
@@ -39,24 +38,9 @@ export default {
   data() {
     return {
       input: "",
-      user: {
-        name: "",
-        score: 0,
-        avatarUrl: "",
-      },
     };
   },
   methods: {
-    order(price) {
-      if (price > this.user.score) {
-        alert("Not enough money");
-      } else {
-        this.user.score -= price;
-      }
-    },
-    updateUser(data) {
-      this.user = data;
-    },
     search(input) {
       this.input = input;
     },

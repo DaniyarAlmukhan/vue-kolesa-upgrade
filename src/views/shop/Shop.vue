@@ -4,13 +4,7 @@
     <BigBtns />
     <FilterBtns @sort="getCategory" />
     <ItemCard :products="sortedProducts" @passProduct="openCard" />
-    <Modal
-      :card-data="cardData"
-      :is-open="isOpen"
-      :balance="user.score"
-      @close-modal="closeModal"
-      @order="order"
-    />
+    <Modal :card-data="cardData" :is-open="isOpen" @close-modal="closeModal" />
   </div>
 </template>
 
@@ -19,12 +13,10 @@ import BigBtns from "./components/BigBtns.vue";
 import FilterBtns from "./components/FilterBtns.vue";
 import ItemCard from "./components/ItemCard.vue";
 import Modal from "./components/Modal.vue";
-import axios from "@/axios";
 
 export default {
   name: "Shop",
-  props:{
-    user: Object,
+  props: {
     input: String,
   },
   components: {
@@ -57,15 +49,20 @@ export default {
     closeModal() {
       this.isOpen = false;
     },
-    order(price) {
-      if (price > this.user.score) {
-        alert("Not enough money");
-      } else {
-        this.user.score -= price;
-      }
-    },
     getCategory(category) {
       this.category = category;
+    },
+    fetchClothing() {
+      this.$store
+        .dispatch("fetchClothing")
+        .then((response) => (this.clothing = response.data))
+        .catch((err) => console.log(err));
+    },
+    fetchAccessories() {
+      this.$store
+        .dispatch("fetchAccessories")
+        .then((response) => (this.accessories = response.data))
+        .catch((err) => console.log(err));
     },
   },
   computed: {
@@ -85,19 +82,10 @@ export default {
       );
     },
   },
+
   mounted() {
-    axios
-      .get("templates/-_RLsEGjof6i/data")
-      .then((response) => {
-        this.clothing = response.data;
-      })
-      .catch((err) => console.log(err));
-    axios
-      .get("templates/q3OPxRyEcPvP/data")
-      .then((response) => {
-        this.accessories = response.data;
-      })
-      .catch((err) => console.log(err));
+    this.fetchClothing();
+    this.fetchAccessories();
   },
 };
 </script>

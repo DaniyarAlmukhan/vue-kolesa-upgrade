@@ -26,7 +26,9 @@ const routes = [
     path: "/shop/how-to-get-points",
     name: "how-to-get-points",
     component: () =>
-      import(/* webpackChunkName: "how-to-get-points" */ "../views/shop/Points.vue")
+      import(
+        /* webpackChunkName: "how-to-get-points" */ "../views/shop/Points.vue"
+      ),
   },
 ];
 

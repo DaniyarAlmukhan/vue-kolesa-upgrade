@@ -26,13 +26,25 @@
             <h3 class="item-info__price mb-8 fw-600">
               {{ cardData.price }} баллов
             </h3>
-            <button class="btn btn--blue mb-24" @click="order">Заказать</button>
+            <button
+              class="btn btn--blue mb-24"
+              @click="order"
+              v-if="$store.state.user.score > this.cardData.price"
+            >
+              Заказать
+            </button>
+            <button class="btn btn--blue mb-24 btn--gold" @click="order" v-else>
+              Попросить
+              {{ this.cardData.price - $store.state.user.score }} баллов
+            </button>
           </div>
 
           <div class="modal__balance balance">
             <div class="balance__info">
               <div class="balance__title mb-4">Твой баланс:</div>
-              <div class="balance__amount">{{ balance }} баллов</div>
+              <div class="balance__amount">
+                {{ $store.state.user.score }} баллов
+              </div>
             </div>
             <div class="balance__icon">
               <img src="@/assets/🛍.png" alt="Balance Icon" />
@@ -129,7 +141,6 @@ export default {
   props: {
     isOpen: Boolean,
     cardData: Object,
-    balance: Number,
   },
   methods: {
     closeModal(e) {
@@ -140,8 +151,12 @@ export default {
         this.$emit("close-modal");
       }
     },
-    order() {
-      this.$emit("order", this.cardData.price);
+    order(e) {
+      if (e.target.classList.contains("btn--gold")) {
+        this.$emit("close-modal");
+      } else {
+        this.$store.commit("order", this.cardData.price);
+      }
     },
   },
 };

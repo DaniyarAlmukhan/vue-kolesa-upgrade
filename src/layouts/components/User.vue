@@ -1,30 +1,29 @@
 <template>
-  <div class="header__profile profile">
+  <div class="header__profile profile" @click="updateUser">
     <a href="#" class="profile__link dl-flex">
-      <img :src="user.avatarUrl" alt="Profile picture" class="profile__pic" />
+      <img
+        :src="$store.state.user.avatarUrl"
+        alt="Profile picture"
+        class="profile__pic"
+      />
       <div class="profile__right">
-        <div class="profile__name fw-600">{{ user.name }}</div>
-        <div class="profile__balance">{{ user.score }} баллов</div>
+        <div class="profile__name fw-600">{{ $store.state.user.name }}</div>
+        <div class="profile__balance">{{ $store.state.user.score }} баллов</div>
       </div>
     </a>
   </div>
 </template>
 
 <script>
-import axios from "@/axios";
-
 export default {
   name: "User",
-  props: {
-    user: Object,
+  methods:{
+    updateUser(){
+      this.$store.dispatch('updateUser');
+    }
   },
   mounted() {
-    axios
-      .get("templates/7ZW3y5GAuIge/data")
-      .then((response) => {
-        this.$emit("updateUser", response.data);
-      })
-      .catch((err) => console.log(err));
+    this.updateUser();
   },
 };
 </script>
