@@ -18,6 +18,8 @@ export default {
   name: "Shop",
   props: {
     input: String,
+    clothing: Array,
+    accessories: Array,
   },
   components: {
     Modal,
@@ -31,8 +33,6 @@ export default {
       cardData: {},
       products: [],
       category: "allProducts",
-      clothing: [],
-      accessories: [],
     };
   },
   methods: {
@@ -52,22 +52,9 @@ export default {
     getCategory(category) {
       this.category = category;
     },
-    fetchClothing() {
-      this.$store
-        .dispatch("fetchClothing")
-        .then((response) => (this.clothing = response.data))
-        .catch((err) => console.log(err));
-    },
-    fetchAccessories() {
-      this.$store
-        .dispatch("fetchAccessories")
-        .then((response) => (this.accessories = response.data))
-        .catch((err) => console.log(err));
-    },
   },
   computed: {
     sortedProducts() {
-      let input = this.input;
       let products = [];
       if (this.category === "clothing") {
         products = this.clothing;
@@ -78,14 +65,9 @@ export default {
       }
       products.sort((x, y) => (x.isNew < y.isNew ? 1 : -1));
       return products.filter((product) =>
-        product.title.toLowerCase().includes(input.toLowerCase())
+        product.title.toLowerCase().includes(this.input.toLowerCase())
       );
     },
-  },
-
-  mounted() {
-    this.fetchClothing();
-    this.fetchAccessories();
   },
 };
 </script>

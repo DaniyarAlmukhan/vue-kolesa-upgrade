@@ -7,12 +7,16 @@
             <img src="@/assets/Vector.svg" alt="Kolesa Logo" />
           </div>
           <Search @search="search" />
-          <User/>
+          <User />
         </header>
         <div class="body dl-flex">
           <Navbar></Navbar>
           <div class="body__content">
-            <router-view :input="input"></router-view>
+            <router-view
+              :input="input"
+              :clothing="clothing"
+              :accessories="accessories"
+            ></router-view>
           </div>
         </div>
       </div>
@@ -38,13 +42,32 @@ export default {
   data() {
     return {
       input: "",
+      clothing: [],
+      accessories: [],
     };
   },
   methods: {
     search(input) {
       this.input = input;
     },
+    fetchClothing() {
+      this.$store
+        .dispatch("fetchClothing")
+        .then((response) => (this.clothing = response.data))
+        .catch((err) => console.log(err));
+    },
+    fetchAccessories() {
+      this.$store
+        .dispatch("fetchAccessories")
+        .then((response) => (this.accessories = response.data))
+        .catch((err) => console.log(err));
+    },
   },
+
+  created(){
+    this.fetchAccessories();
+    this.fetchClothing();
+  }
 };
 </script>
 
