@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: 'FilterBtns',
+  name: "FilterBtns",
   data() {
     return {
       category: "allProducts",
@@ -59,7 +59,7 @@ export default {
   methods: {
     filter(category) {
       this.category = category;
-      this.$emit('sort', category);
+      this.$emit("sort", category);
     },
   },
 };
